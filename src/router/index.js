@@ -1,0 +1,19 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: '登录界面',
+      component: () => import('@/pages/index.vue')
+    },
+    {
+      path: '/mainstudent',
+      name: '学生界面',
+      component: () => import('@/pages/mainstudent/mainstudent.vue')
+    }
+  ]
+})
