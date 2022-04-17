@@ -12,6 +12,12 @@
       <el-table-column prop="standard" label="评价标准和办法">
       </el-table-column>
       <el-table-column prop="reason" label="证明材料">
+        <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/">
+          <div class="buttons">
+            <el-button size="small">上传资料</el-button>
+            <el-button size="small">查看资料</el-button>
+          </div>
+        </el-upload>
       </el-table-column>
       <el-table-column prop="qt" label="自评理由">
         <template slot-scope="scope">
@@ -275,4 +281,7 @@ export default {
 </script>
 
 <style  scoped>
+.buttons {
+  display: flex;
+}
 </style>
