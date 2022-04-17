@@ -37,8 +37,8 @@
               <label id="Gly">管理员</label>
             </div>
             <div id="An">
-              <button id="btn01" @click="login">登录</button>
-              <button id="btn02">重置</button>
+              <el-button round @click="login" size="small">登录</el-button>
+              <el-button round @click="remake" size="small">重置</el-button>
             </div>
           </form>
         </div>
@@ -54,7 +54,7 @@
 export default {
   methods: {
     login () {
-      this.$router.push('/mainstudent')
+      this.$router.replace({ path: '/mainstudent' })
     }
   }
 }
@@ -159,12 +159,6 @@ form {
   text-align: center;
   color: #11449e;
   line-height: 33px;
-}
-#btn01 {
-  color: #11449e;
-}
-#btn02 {
-  color: #11449e;
 }
 #Dan {
   padding: 5px;
