@@ -1,6 +1,6 @@
 <template>
   <div class="box1">
-    <el-menu :default-active="activeIndex" mode="horizontal" class="el-menu-demo" type="border-card">
+    <el-menu :default-active="activeIndex" mode="horizontal" class="main" type="border-card">
       <el-tabs v-model="activeName">
         <el-tab-pane label="个人中心" name="first">
           <person></person>
@@ -12,6 +12,7 @@
           <query></query>
         </el-tab-pane>
       </el-tabs>
+
     </el-menu>
   </div>
 </template>

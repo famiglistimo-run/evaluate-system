@@ -13,10 +13,7 @@
       </el-table-column>
       <el-table-column prop="reason" label="证明材料">
         <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/">
-          <div class="buttons">
-            <el-button size="small">上传资料</el-button>
-            <el-button size="small">查看资料</el-button>
-          </div>
+          <el-button class="btncom">上传资料</el-button>
         </el-upload>
       </el-table-column>
       <el-table-column prop="qt" label="自评理由">
@@ -277,11 +274,14 @@ export default {
       ],
     }
   },
+  methods: {
+
+  }
 }
 </script>
 
 <style  scoped>
-.buttons {
-  display: flex;
+.btncom {
+  margin-left: 50%;
 }
 </style>
