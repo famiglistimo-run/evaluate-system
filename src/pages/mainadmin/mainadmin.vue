@@ -3,6 +3,7 @@
     <el-menu :default-active="activeIndex" mode="horizontal" class="main" type="border-card">
       <el-tabs v-model="activeName">
         <el-tab-pane label="个人信息" name="first">
+          <person></person>
         </el-tab-pane>
         <el-tab-pane label="学院管理" name="second">
         </el-tab-pane>
@@ -21,7 +22,9 @@
 </template>
 
 <script>
+import person from '../mainadmin/person.vue';
 export default {
+  components: { person },
   name: "mainstudent",
   data () {
     return {
