@@ -1,6 +1,7 @@
 <template>
   <div class="status-bar">
     <div class="system-name">西南石油大学综测评定系统</div>
+    <el-button class="btncan" type="primary">注销</el-button>
   </div>
 </template>
 
@@ -20,5 +21,8 @@ export default {};
 .system-name {
   font-size: 20sp;
   margin-left: 50px;
+}
+.btncan {
+  margin-right: 50px;
 }
 </style>

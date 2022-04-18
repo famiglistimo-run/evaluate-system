@@ -14,6 +14,11 @@ export default new Router({
       path: '/mainstudent',
       name: '学生界面',
       component: () => import('@/pages/mainstudent/mainstudent.vue')
+    },
+    {
+      path: '/mainadmin',
+      name: '管理员界面',
+      component: () => import('@/pages/mainadmin/mainadmin.vue')
     }
   ]
 })

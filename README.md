@@ -18,8 +18,10 @@ npm run build
 pages   
 ├── index.vue - 首页（登录页面）  
 ├── mainstudent 学生界面  
-│          ├── mainstudent  -学生标签页  
-│          ├── person       -个人页面  
-│          ├── evaulate     -评定页面  
-│          ├── query        -查询页面   
-        
+│             ├── mainstudent  -学生标签页  
+│             ├── person       -个人页面  
+│             ├── evaulate     -评定页面  
+│             ├── query        -查询页面   
+├── mainadmin 管理员界面  
+│             ├── mainadmin    -管理员标签页  
+│             ├── person       -个人页面         
