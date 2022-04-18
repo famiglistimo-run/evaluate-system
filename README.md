@@ -23,5 +23,10 @@ pages
 │             ├── evaulate     -评定页面  
 │             ├── query        -查询页面   
 ├── mainadmin 管理员界面  
-│             ├── mainadmin    -管理员标签页  
-│             ├── person       -个人页面         
+│             ├── mainadmin        -管理员标签页  
+│             ├── person           -个人页面         
+│             ├── collageadmin     -学院管理页面   
+│             ├── majoradmin       -学院管理页面      
+│             ├── semesteradmin    -学院管理页面      
+│             ├── useradd          -学院管理页面      
+│             ├── useradmin        -学院管理页面          

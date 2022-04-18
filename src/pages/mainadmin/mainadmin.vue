@@ -6,14 +6,19 @@
           <person></person>
         </el-tab-pane>
         <el-tab-pane label="学院管理" name="second">
+          <collageadmin></collageadmin>
         </el-tab-pane>
         <el-tab-pane label="专业管理" name="third">
+          <majoradmin></majoradmin>
         </el-tab-pane>
         <el-tab-pane label="学期管理" name="fourth">
+          <semesteradmin></semesteradmin>
         </el-tab-pane>
         <el-tab-pane label="用户录入" name="fifth">
+          <adduser></adduser>
         </el-tab-pane>
         <el-tab-pane label="用户管理" name="sixth">
+          <useradmin></useradmin>
         </el-tab-pane>
       </el-tabs>
 
@@ -23,8 +28,13 @@
 
 <script>
 import person from '../mainadmin/person.vue';
+import collageadmin from '../mainadmin/collageadmin.vue';
+import majoradmin from './majoradmin.vue';
+import Semesteradmin from './semesteradmin.vue';
+import Adduser from './adduser.vue';
+import Useradmin from './useradmin.vue';
 export default {
-  components: { person },
+  components: { person, collageadmin, majoradmin, Semesteradmin, Adduser, Useradmin },
   name: "mainstudent",
   data () {
     return {
