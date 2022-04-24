@@ -14,7 +14,7 @@
       <el-table-column prop="role" label="角色：" width="180">
       </el-table-column>
       <el-table-column prop="cz" label="操作">
-        <el-link type="primary">修改成绩</el-link>
+        <el-link type="primary">修改</el-link>
       </el-table-column>
     </el-table>
   </div>
