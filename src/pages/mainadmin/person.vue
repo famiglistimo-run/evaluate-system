@@ -1,7 +1,7 @@
 <template>
   <div id="info">
     <el-card shadow="always">
-      <el-descriptions title="个人信息" direction="vertical" :column="2" border size="medium">
+      <el-descriptions title="个人信息" direction="vertical" :column="2" border size="medium" labelStyle="height: 70px" contentStyle="height: 70px">
         <el-descriptions-item label="姓名">{{info.name}}</el-descriptions-item>
         <el-descriptions-item label="工号">{{info.id}}</el-descriptions-item>
         <el-descriptions-item label="学院">{{info.college}}</el-descriptions-item>
@@ -11,26 +11,28 @@
         </el-descriptions-item>
         <el-descriptions-item label="密码">
           <el-button type="text" @click="dialogFormVisible = true">修改密码</el-button>
-          <el-dialog title="修改密码" :visible.sync="dialogFormVisible" width="450px">
-            <el-form :model="form" :rules="rules" ref="ruleForm" label-width="80px">
-              <el-form-item label="原密码" prop="oldPwd">
-                <el-input v-model="form.oldPwd" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="新密码" prop="newPwd">
-                <el-input v-model="form.newPwd" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="确认密码" prop="again">
-                <el-input v-model="form.again" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button>取 消</el-button>
-              <el-button>确 定</el-button>
-            </div>
-          </el-dialog>
+
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-dialog title="修改密码" :visible.sync="dialogFormVisible" width="450px">
+      <el-form :model="form" :rules="rules" ref="ruleForm" label-width="80px">
+        <el-form-item label="原密码" prop="oldPwd">
+          <el-input v-model="form.oldPwd" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="新密码" prop="newPwd">
+          <el-input v-model="form.newPwd" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码" prop="again">
+          <el-input v-model="form.again" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button>取 消</el-button>
+        <el-button>确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -70,7 +72,7 @@ export default {
 
 <style scoped>
 #info {
-  width: 1240px;
+  width: 1040px;
   left: 0;
   right: 0;
   margin: 30px auto;
@@ -78,11 +80,7 @@ export default {
 .el-descriptions {
   font-size: 16px;
 }
-.el-descriptions__body .el-descriptions__table .el-descriptions-item__cell {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  text-align: left;
-  font-weight: 400;
-  line-height: 2.5;
+.el-descriptions--medium.is-bordered .el-descriptions-item__cell {
+  padding: 20px;
 }
 </style>

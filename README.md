@@ -14,7 +14,6 @@ npm run build
 #项目页面  
 ├── components  
 │     schooltopbar.vue - 学校顶部组件  
-
 pages   
 ├── index.vue - 首页（登录页面）  
 ├── mainstudent 学生界面  

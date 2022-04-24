@@ -49,4 +49,7 @@ export default {
 .box1 {
   margin: 0 auto;
 }
+.el-menu.el-menu--horizontal {
+  border-bottom: solid 0 #e6e6e6;
+}
 </style>
