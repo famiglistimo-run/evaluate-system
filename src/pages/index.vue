@@ -52,6 +52,9 @@
 
 <script>
 export default {
+  created () {
+
+  },
   methods: {
     login () {
       this.$router.replace({ path: '/mainstudent' })
