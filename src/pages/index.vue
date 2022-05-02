@@ -26,15 +26,15 @@
             <input id="text01" type="text" v-model="accountNum"><br>
             <label id="Mm">密&nbsp;&nbsp;码&nbsp;&nbsp;:&nbsp;&nbsp;</label>
             <input id="text02" type="password" v-model="password"><br>
-            <label id="Yzm">验证码：</label>
-            <input id="text03" type="text" style="width:70px">&nbsp;&nbsp;
-            <img :src="imgCode" ><a id="refresh_code" @click="refreshCode">看不清，换一张</a><br>
+            <label id="Yzm">验证码：&nbsp;</label>
+            <input id="text03" type="text" style="width:70px" v-model="code">&nbsp;&nbsp;
+            <img :src="imgCode" id="yzm"><a id="refresh_code" @click="refreshCode">看不清，换一张</a><br>
             <div id="Dan">
-              <input type="radio" name="1" v-model="code">
+              <input type="radio" name="role" value="教师" id="teacher" v-model="role">
               <label id="JiaoShi">教师</label>
-              <input type="radio" name="1">
+              <input type="radio" name="role" value="学生" id="student" v-model="role">
               <label id="Xs">学生</label>
-              <input type="radio" name="1">
+              <input type="radio" name="role" value="管理员" id="admin" v-model="role">
               <label id="Gly">管理员</label>
             </div>
             <div id="An">
@@ -55,7 +55,11 @@
 export default {
   data () {
     return {
+      accountNum: '',
+      password: '',
+      code: '',
       imgCode: '',
+      role: ''
     }
   },
   created () {
@@ -63,11 +67,31 @@ export default {
   },
   methods: {
     login () {
-      this.api.post("/songqiang/")
+      let user = {
+        accountNum: this.accountNum,
+        password: this.password,
+        code: this.code,
+        role: this.role
+      }
 
-      this.$router.replace({ path: '/mainstudent' })
-    },
-    refreshCode(){
+      if (document.getElementById("teacher").checked = true) {
+        this.api.post("/zuoshurun/swpu/login", user).then(res => {
+          this.$router.replace({ path: '/mainteacher' })
+        })
+      }
+      else if (document.getElementById("mainstudent").checked = true) {
+        this.api.post("/zuoshurun/swpu/login", user).then(res => {
+          this.$router.replace({ path: '/mainstudent' })
+        })
+      }
+      else if (document.getElementById("mainadmin").checked = true) {
+        this.api.post("/zuoshurun/swpu/login", user).then(res => {
+          this.$router.replace({ path: '/mainadmin' })
+        })
+      }
+    }
+    ,
+    refreshCode () {
       const num = Math.ceil(Math.random() * 10); // 生成一个随机数（防止缓存）
       this.imgCode = '/songqiang/swpu/login?' + num;
     },
@@ -184,5 +208,14 @@ form {
   left: 45%;
   font-size: 10px;
   color: #11449e;
+}
+#Yzm {
+  margin-left: 100px;
+}
+#yzm {
+  width: 80px;
+  height: 30px;
+  margin-top: 0;
+  margin-left: 0;
 }
 </style>
