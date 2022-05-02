@@ -23,13 +23,14 @@
           </div>
           <form>
             <label id="Yhm">用户名：</label>
-            <input id="text01" type="text"><br>
+            <input id="text01" type="text" v-model="accountNum"><br>
             <label id="Mm">密&nbsp;&nbsp;码&nbsp;&nbsp;:&nbsp;&nbsp;</label>
-            <input id="text02" type="password"><br>
+            <input id="text02" type="password" v-model="password"><br>
             <label id="Yzm">验证码：</label>
-            <input id="text03" type="text" style="width:70px">&nbsp;&nbsp;<input id="text04" type="text" style="width:80px" value="asdf"><br>
+            <input id="text03" type="text" style="width:70px">&nbsp;&nbsp;
+            <img :src="imgCode" ><a id="refresh_code" @click="refreshCode">看不清，换一张</a><br>
             <div id="Dan">
-              <input type="radio" name="1">
+              <input type="radio" name="1" v-model="code">
               <label id="JiaoShi">教师</label>
               <input type="radio" name="1">
               <label id="Xs">学生</label>
@@ -52,15 +53,24 @@
 
 <script>
 export default {
+  data () {
+    return {
+      imgCode: '',
+    }
+  },
   created () {
-    this.api.get("/zuoshurun/swpu/login").then(res => {
-      console.log(res.data)
-    })
+    this.refreshCode();
   },
   methods: {
     login () {
+      this.api.post("/songqiang/")
+
       this.$router.replace({ path: '/mainstudent' })
-    }
+    },
+    refreshCode(){
+      const num = Math.ceil(Math.random() * 10); // 生成一个随机数（防止缓存）
+      this.imgCode = '/songqiang/swpu/login?' + num;
+    },
   }
 }
 </script>

@@ -21,7 +21,7 @@ module.exports = {
         target: 'http://192.168.137.1:8071/',
         changeOrigin: true,
         pathRewrite: {
-          '^/zuoshurun': ''
+          '^/songqiang': ''
         }
       },
     },
