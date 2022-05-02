@@ -30,7 +30,7 @@ pages
 │             ├── useradd                    -学院管理页面      
 │             ├── useradmin                  -学院管理页面
 ├── mainteacher 教师界面
-│             ├── mainteacher                 -教师标签页  
-│             ├── person                      -个人页面 
-│             ├── majorstatus                  -专业总况
-│             ├── scoreexamine                -综测审核                 
+│              ├── mainteacher                 -教师标签页  
+│              ├── person                      -个人页面 
+│              ├── majorstatus                  -专业总况
+│              ├── scoreexamine                -综测审核                 
