@@ -10,19 +10,9 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/zuoshurun': {
+      '/swpu': {
         target: 'http://192.168.137.1:8071/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/zuoshurun': ''
-        }
-      },
-      '/songqiang': {
-        target: 'http://192.168.137.1:8071/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/songqiang': ''
-        }
+        changeOrigin: true
       },
     },
 

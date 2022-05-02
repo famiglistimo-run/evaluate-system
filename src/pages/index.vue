@@ -28,7 +28,7 @@
             <input id="text02" type="password" v-model="password"><br>
             <label id="Yzm">验证码：&nbsp;</label>
             <input id="text03" type="text" style="width:70px" v-model="code">&nbsp;&nbsp;
-            <img :src="imgCode" id="yzm"><a id="refresh_code" @click="refreshCode">看不清，换一张</a><br>
+            <img :src="imgCode" id="yzm2"><a id="refresh_code" @click="refreshCode">看不清，换一张</a><br>
             <div id="Dan">
               <input type="radio" name="role" value="教师" id="teacher" v-model="role">
               <label id="JiaoShi">教师</label>
@@ -75,17 +75,17 @@ export default {
       }
 
       if (document.getElementById("teacher").checked = true) {
-        this.api.post("/zuoshurun/swpu/login", user).then(res => {
+        this.api.post("/swpu/login", user).then(res => {
           this.$router.replace({ path: '/mainteacher' })
         })
       }
       else if (document.getElementById("mainstudent").checked = true) {
-        this.api.post("/zuoshurun/swpu/login", user).then(res => {
+        this.api.post("/swpu/login", user).then(res => {
           this.$router.replace({ path: '/mainstudent' })
         })
       }
       else if (document.getElementById("mainadmin").checked = true) {
-        this.api.post("/zuoshurun/swpu/login", user).then(res => {
+        this.api.post("/swpu/login", user).then(res => {
           this.$router.replace({ path: '/mainadmin' })
         })
       }
@@ -93,7 +93,7 @@ export default {
     ,
     refreshCode () {
       const num = Math.ceil(Math.random() * 10); // 生成一个随机数（防止缓存）
-      this.imgCode = '/songqiang/swpu/login?' + num;
+      this.imgCode = '/swpu/login?' + num;
     },
   }
 }
@@ -212,7 +212,7 @@ form {
 #Yzm {
   margin-left: 100px;
 }
-#yzm {
+#yzm2 {
   width: 80px;
   height: 30px;
   margin-top: 0;

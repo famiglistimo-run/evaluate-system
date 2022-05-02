@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials=true;
+
 function Method() {
   this.userInfo = JSON.parse(
     window.sessionStorage.getItem("today.userInfo.DATA")
@@ -8,7 +10,7 @@ function Method() {
 // GET请求
 Method.prototype.get = function (url, token) {
   return new Promise((resolve, reject) => {
-    // { headers: { Authorization: token ? token : this.userInfo.token } 
+    // { headers: { Authorization: token ? token : this.userInfo.token }
     axios.get(url).then(res => {
       resolve(res)
     }).catch(err => {
@@ -43,7 +45,7 @@ Method.prototype.postType = function (url, data) {
 // DELETE请求
 Method.prototype.delete = function (url, token) {
   return new Promise((resolve, reject) => {
-    // { headers: { Authorization: token ? token : this.userInfo.token } 
+    // { headers: { Authorization: token ? token : this.userInfo.token }
     axios.delete(url).then(res => {
       resolve(res)
     }).catch(err => {

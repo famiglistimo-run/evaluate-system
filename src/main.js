@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import api from "@/assets/javascript/api.js";
 
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials=true;
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

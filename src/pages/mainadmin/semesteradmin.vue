@@ -1,29 +1,43 @@
 <template>
   <div class="main">
     <div class="contain">
-      <p>评定开始时间：</p>
-      <el-select v-model="value" placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+      <p>学期名称：</p>
+      <el-input v-model="semesterName" placeholder="请输入学期名称"></el-input>
+    </div>
+    <div class="contain">
+      <p>请选择学院：</p>
+      <el-select v-model="collegeId" placeholder="请选择">
+        <el-option v-for="item in college" :key="item.collegeId" :label="item.collegeName" :value="item.collegeId">
         </el-option>
       </el-select>
     </div>
     <div class="contain">
-      <p>评定结束时间：</p>
-      <el-select v-model="value" placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
-      </el-select>
+      <p>评测开始时间：</p>
+      <el-date-picker
+        v-model="startDate"
+        type="date"
+        placeholder="选择日期">
+      </el-date-picker>
     </div>
     <div class="contain">
-      <p>学生填写时间：</p>
-      <el-select v-model="value" placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
-      </el-select>
+      <p>填报结束时间：</p>
+      <el-date-picker
+        v-model="fillEndDate"
+        type="date"
+        placeholder="选择日期">
+      </el-date-picker>
+    </div>
+    <div class="contain">
+      <p>审核结束时间：</p>
+      <el-date-picker
+        v-model="examineEndDate"
+        type="date"
+        placeholder="选择日期">
+      </el-date-picker>
     </div>
     <div class="contain2">
       <el-button type="primary">重置</el-button>
-      <el-button type="primary">确认</el-button>
+      <el-button type="primary" @click="submit">确认</el-button>
     </div>
   </div>
 </template>
@@ -31,25 +45,54 @@
 <script>
 export default {
   name: "collageadmin",
+  created() {
+    this.getCollegeList();
+  },
   data () {
     return {
-      options: [{
-        value: '选项1',
-        label: '黄金糕'
-      }, {
-        value: '选项2',
-        label: '双皮奶'
-      }, {
-        value: '选项3',
-        label: '蚵仔煎'
-      }, {
-        value: '选项4',
-        label: '龙须面'
-      }, {
-        value: '选项5',
-        label: '北京烤鸭'
+      semesterName: '',
+      college: [{
+        collegeId: '',
+        collegeName: ''
       }],
-      value: ''
+      collegeId: '',
+      startDate: '',
+      fillEndDate: '',
+      examineEndDate: ''
+    }
+  },
+  methods: {
+    getCollegeList(){
+      this.api.get("/swpu/college").then(res =>{
+        if (res.data.code === '1'){
+          console.log(res.data.data.rows)
+          this.college = res.data.data.rows;
+        }
+      })
+    },
+    submit(){
+      let param = {
+        "collegeId": this.collegeId,
+        "examineEndDate": this.examineEndDate,
+        "fillEndDate": this.fillEndDate,
+        "semesterName": this.semesterName,
+        "startDate": this.startDate
+      }
+      this.api.post("/swpu/semester/addSemester",param).then(res =>{
+        if (res.data.code === '1'){
+          this.$message({
+            showClose: true,
+            message: res.data.msg,
+            type: 'success'
+          });
+        }else {
+          this.$message({
+            showClose: true,
+            message: res.data.msg,
+            type: 'error'
+          });
+        }
+      })
     }
   }
 }
