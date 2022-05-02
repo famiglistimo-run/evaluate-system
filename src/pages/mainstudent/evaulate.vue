@@ -1,37 +1,47 @@
 <template>
   <div>
-    <el-table :data="tableData" style="width: 100%" border>
-      <el-table-column prop="id" label="序号" width="60px">
+    <el-table
+      :data="tableData"
+      style="width: 100%" border
+      :span-method="arraySpanMethod"
+      :cell-style="{borderColor:'#000000'}"
+      :header-cell-style="{borderColor:'#000000',textAlign:'center'}">
+<!--      <el-table-column prop="id" label="序号" width="60px">-->
+<!--      </el-table-column>-->
+      <el-table-column prop="pro" label="项目" width="40px" align="center">
       </el-table-column>
-      <el-table-column prop="pro" label="项目">
+      <el-table-column prop="index" label="具体指标" width="110px">
       </el-table-column>
-      <el-table-column prop="index" label="具体指标">
+      <el-table-column prop="content" label="测评内容" width="320px">
       </el-table-column>
-      <el-table-column prop="content" label="测评内容">
+      <el-table-column prop="standard" label="评价标准和办法" width="600px">
       </el-table-column>
-      <el-table-column prop="standard" label="评价标准和办法">
-      </el-table-column>
-      <el-table-column prop="reason" label="证明材料">
-        <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/">
-          <el-button class="btncom">上传资料</el-button>
-        </el-upload>
-      </el-table-column>
+<!--      <el-table-column prop="reason" label="证明材料">-->
+<!--        <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/">-->
+<!--          <el-button class="btncom">上传资料</el-button>-->
+<!--        </el-upload>-->
+<!--      </el-table-column>-->
       <el-table-column prop="qt" label="自评理由">
         <template slot-scope="scope">
           <el-input id="input1" type="textarea" autosize placeholder="自评理由" v-model="scope.row.input1">
           </el-input>
         </template>
       </el-table-column>
-      <el-table-column prop="mscore" label="自评">
+      <el-table-column prop="mscore" label="自评" width="100px">
         <template slot-scope="scope">
           <el-input id="input2" type="text" v-model="scope.row.input2"></el-input>
         </template>
       </el-table-column>
-      <el-table-column prop="bscore" label="班评">
+      <el-table-column prop="bscore" label="班评" width="100px">
       </el-table-column>
-      <el-table-column prop="yscore" label="院评">
+      <el-table-column prop="yscore" label="院评" width="100px">
       </el-table-column>
     </el-table>
+
+    <div>班评人:张三&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院评人:李四
+      <el-button type="primary">上传材料</el-button>
+      <el-button type="primary">提交</el-button>
+    </div>
   </div>
 </template>
 
@@ -43,21 +53,21 @@ export default {
       tableData: [{
         id: '1',
         pro: '01思想政治素质15分',
-        index: '0101理想信念3分',
+        index: '0101理想信念(3分)',
         content: '010101参加青马工程等培训班，学习小组，社团等思想政治理论研究团体，提交入党申请书',
         standard: '参加青马工程培训合格得0.4分（缺席一次扣0.2分，扣完为止；参加学习小组，思想政治理论社团或提交入党申请书得0.2分',
       },
       {
         id: '2',
         pro: '01思想政治素质15分',
-        index: '0101理想信念3分',
+        index: '0101理想信念(3分)',
         content: '010102积极参与思想政治类学习报告会、座谈会、征文、讲座等活动',
         standard: '主要参加者每参加一次0.5分，仅作为观众参加则得0.1分。',
       },
       {
         id: '3',
         pro: '01思想政治素质15分',
-        index: '0101理想信念3分',
+        index: '0101理想信念(3分)',
         content: '010103青年大学习等学习教育活动',
         standard: '青年大学习一直满分参与无缺1分，每缺一次扣0.2分。',
       },
@@ -271,11 +281,88 @@ export default {
         content: '040101在其他方面成绩突出，为集体争得荣誉，为学校精神文明建设做出贡献者。或其他在实践创新方面有突出表现，获得一定成绩的；其他方面辅导员认为该扣分的项目',
         standard: '学分绩点专业前10名，依次加10、9、7、6、5、4、3、2、1、0.5分。其他突出成绩由参评者提出申请，辅导员认定；扣分项目由测评小组或辅导员提出，辅导员审核认定。（此项基础分为0分，加减分不得与以上各项内容重复，最低扣至-10分）',
       },
+      {
+        id: '33',
+        pro: '总分',
+        index: 75.2,
+        content: 75.0,
+        standard: 75.0
+      }
       ],
+      spanArr1: [],
+      spanArr2: [],
+      pos1: 0,
+      pos2: 0
     }
   },
   methods: {
+    getSpanArr1(data) {
+      for (let i = 0; i < data.length; i++) {
+        if (i === 0) {
+          this.spanArr1.push(1);
+          this.pos1 = 0
+        } else {
+          // 判断当前元素与上一个元素是否相同
+          if (data[i].pro === data[i - 1].pro) {
+            this.spanArr1[this.pos1] += 1;
+            this.spanArr1.push(0);
+          } else {
+            this.spanArr1.push(1);
+            this.pos1 = i;
+          }
+        }
+      }
+    },
+    getSpanArr2(data) {
+      for (let i = 0; i < data.length; i++) {
+        if (i === 0) {
+          this.spanArr2.push(1);
+          this.pos2 = 0
+        } else {
+          // 判断当前元素与上一个元素是否相同
+          if (data[i].index === data[i - 1].index) {
+            this.spanArr2[this.pos2] += 1;
+            this.spanArr2.push(0);
+          } else {
+            this.spanArr2.push(1);
+            this.pos2 = i;
+          }
+        }
+      }
+    },
+    arraySpanMethod({row, column, rowIndex, columnIndex}) {
 
+      if (rowIndex === 33){
+        if (columnIndex === 0){
+          return {
+            rowspan: 1,
+            colspan: 5
+          }
+        }
+      }else {
+        if (columnIndex === 0) {
+          const _row = this.spanArr1[rowIndex];
+          const _col = _row > 0 ? 1 : 0;
+          return {
+            rowspan: _row,
+            colspan: _col
+          }
+        }
+
+        if (columnIndex === 1){
+          const _row = this.spanArr2[rowIndex];
+          const _col = _row > 0 ? 1 : 0;
+          return {
+            rowspan: _row,
+            colspan: _col
+          }
+        }
+      }
+    }
+  },
+  mounted() {
+    this.getSpanArr1(this.tableData);
+    this.getSpanArr2(this.tableData);
   }
 }
 </script>
@@ -284,4 +371,9 @@ export default {
 .btncom {
   margin-left: 50%;
 }
+
+.el-table--border, .el-table--group {
+  border: 1px solid #000000;
+}
+
 </style>

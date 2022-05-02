@@ -11,7 +11,7 @@
         <strong>SWPU</strong><br>
       </div>
       <div id="DL_color">
-        <img id="DL_left" src="../../../school/src/assets/login.jpg" alt="">
+        <img id="DL_left" src="../assets/login.jpg" alt="">
       </div>
       <div id="DL_right">
         <div id="DL_JM_color">
