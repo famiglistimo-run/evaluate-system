@@ -9,7 +9,7 @@
       </el-table-column>
       <el-table-column prop="address" label="自评综测成绩">
       </el-table-column>
-      <el-table-column prop="mscore" label="院评">
+      <el-table-column prop="mscore" label="班评">
         <template slot-scope="scope">
           <el-input id="input" type="text" v-model="scope.row.input"></el-input>
         </template>
