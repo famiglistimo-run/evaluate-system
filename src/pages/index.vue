@@ -38,7 +38,7 @@
             </div>
             <div id="An">
               <el-button round @click="login" size="small">登录</el-button>
-              <el-button round @click="remake" size="small">重置</el-button>
+              <el-button round size="small">重置</el-button>
             </div>
           </form>
         </div>
@@ -53,7 +53,9 @@
 <script>
 export default {
   created () {
-
+    this.api.get("/zuoshurun/swpu/login").then(res => {
+      console.log(res.data)
+    })
   },
   methods: {
     login () {
